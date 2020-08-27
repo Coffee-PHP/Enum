@@ -1,0 +1,42 @@
+{
+	"name": "coffeephp/enum",
+	"description": "Adds support for the usage of enums in PHP.",
+	"license": "Apache-2.0",
+	"authors": [
+		{
+			"name": "Danny Damsky",
+			"email": "dannydamsky99@gmail.com"
+		}
+	],
+	"keywords": [
+		"coffeephp",
+		"coffee",
+		"php",
+		"enum"
+	],
+	"require": {
+		"php": ">=7.4",
+		"ext-apcu": "*",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-master",
+		"phpunit/phpunit": "9.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"CoffeePhp\\Enum\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"CoffeePhp\\Enum\\Test\\Unit\\": "test/Unit/",
+			"CoffeePhp\\Enum\\Test\\Mock\\": "test/Mock/"
+		}
+	},
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"apcu-autoloader": true
+	}
+}
