@@ -33,6 +33,8 @@ use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 use function PHPUnit\Framework\assertSameSize;
 use function PHPUnit\Framework\assertTrue;
+use function serialize;
+use function unserialize;
 
 /**
  * Class AbstractEnumTest
@@ -73,6 +75,7 @@ abstract class AbstractEnumTest extends TestCase
             assertSame($key, $instance::getConstantNameByValue($value));
             assertSame($instance, $instance::getInstanceByConstantName($key));
             assertSame($instance, $instance::getInstanceByConstantValue($value));
+            assertEquals($instance, unserialize(serialize($instance)));
         }
     }
 }

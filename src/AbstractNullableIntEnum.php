@@ -36,6 +36,7 @@ use CoffeePhp\Enum\Util\EnumGetInstancesTrait;
 use CoffeePhp\Enum\Util\EnumHasConstantNameTrait;
 use CoffeePhp\Enum\Util\EnumHasConstantValueTrait;
 use CoffeePhp\Enum\Util\EnumMagicTrait;
+use CoffeePhp\Enum\Util\EnumSerializableTrait;
 
 /**
  * Class AbstractNullableIntEnum
@@ -53,6 +54,7 @@ abstract class AbstractNullableIntEnum implements EnumInterface
     use EnumHasConstantNameTrait;
     use EnumHasConstantValueTrait;
     use EnumMagicTrait;
+    use EnumSerializableTrait;
 
     private string $key;
     private ?int $value;

@@ -27,6 +27,7 @@ namespace CoffeePhp\Enum\Contract;
 
 
 use JsonSerializable;
+use Serializable;
 
 /**
  * Interface EnumInterface
@@ -34,7 +35,7 @@ use JsonSerializable;
  * @since 2020-07-27
  * @author Danny Damsky <dannydamsky99@gmail.com>
  */
-interface EnumInterface extends JsonSerializable
+interface EnumInterface extends JsonSerializable, Serializable
 {
     /**
      * Get a map of constants that are available
