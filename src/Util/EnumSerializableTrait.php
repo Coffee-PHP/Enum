@@ -21,10 +21,9 @@
  * @since 2020-09-03
  */
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
-
 
 use function serialize;
 use function unserialize;
@@ -59,6 +58,6 @@ trait EnumSerializableTrait
         [
             $this->key,
             $this->value
-        ] = unserialize($serialized);
+        ] = (array)unserialize($serialized);
     }
 }

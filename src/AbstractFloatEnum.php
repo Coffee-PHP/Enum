@@ -22,10 +22,9 @@
  * @noinspection PhpSuperClassIncompatibleWithInterfaceInspection
  */
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace CoffeePhp\Enum;
-
 
 use CoffeePhp\Enum\Contract\EnumInterface;
 use CoffeePhp\Enum\Util\EnumGetConstantNameByValueTrait;
