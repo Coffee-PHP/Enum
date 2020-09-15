@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
 
-
 /**
  * Trait EnumGetConstantValueByNameTrait
  * @package coffeephp\enum

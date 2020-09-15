@@ -21,10 +21,9 @@
  * @since 2020-08-12
  */
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
-
 
 use BadMethodCallException;
 

@@ -25,9 +25,6 @@ declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
 
-
-use CoffeePhp\Enum\Contract\EnumInterface;
-
 /**
  * Trait EnumGetInstanceByConstantValueTrait
  * @package coffeephp\enum
@@ -38,6 +35,7 @@ trait EnumGetInstanceByConstantValueTrait
 {
     /**
      * @inheritDoc
+     * @return static
      */
     public static function getInstanceByConstantValue($constantValue): self
     {

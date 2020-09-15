@@ -21,10 +21,9 @@
  * @since 2020-07-27
  */
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Contract;
-
 
 use JsonSerializable;
 use Serializable;

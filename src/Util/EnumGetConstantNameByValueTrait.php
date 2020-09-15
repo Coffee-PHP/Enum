@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
 
-
 use InvalidArgumentException;
 
 /**
@@ -41,6 +40,10 @@ trait EnumGetConstantNameByValueTrait
      */
     public static function getConstantNameByValue($constantValue): string
     {
+        /**
+         * @var string $key
+         * @var mixed $value
+         */
         foreach (static::getConstants() as $key => $value) {
             if ($value === $constantValue) {
                 return $key;

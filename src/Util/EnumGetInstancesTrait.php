@@ -21,12 +21,9 @@
  * @since 2020-08-12
  */
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
-
-
-use CoffeePhp\Enum\Contract\EnumInterface;
 
 /**
  * Trait EnumGetInstancesTrait
@@ -37,7 +34,7 @@ use CoffeePhp\Enum\Contract\EnumInterface;
 trait EnumGetInstancesTrait
 {
     /**
-     * @var EnumInterface[]|null
+     * @var static[][]
      */
     private static array $instances = [];
 
@@ -49,12 +46,18 @@ trait EnumGetInstancesTrait
     {
         if (!isset(self::$instances[static::class])) {
             $instances = [];
+            /**
+             * @var string $key
+             * @var mixed $value
+             */
             foreach (static::getConstants() as $key => $value) {
+                /**
+                 * @psalm-suppress MixedArgument
+                 */
                 $instances[$key] = new static($key, $value);
             }
             self::$instances[static::class] = $instances;
         }
         return self::$instances[static::class];
     }
-
 }
