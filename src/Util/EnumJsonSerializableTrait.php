@@ -1,7 +1,7 @@
 <?php
 
 /**
- * EnumMagicTrait.php
+ * EnumJsonSerializableTrait.php
  *
  * Copyright 2020 Danny Damsky
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,44 +18,29 @@
  *
  * @package coffeephp\enum
  * @author Danny Damsky <dannydamsky99@gmail.com>
- * @since 2020-08-12
+ * @since 2020-10-02
  */
 
 declare(strict_types=1);
 
 namespace CoffeePhp\Enum\Util;
 
-use BadMethodCallException;
-
-use function sprintf;
-
 /**
- * Trait EnumMagicTrait
+ * Trait EnumJsonSerializableTrait
  * @package coffeephp\enum
- * @since 2020-08-12
+ * @since 2020-10-02
  * @author Danny Damsky <dannydamsky99@gmail.com>
  */
-trait EnumMagicTrait
+trait EnumJsonSerializableTrait
 {
-
     /**
-     * @param string $name
-     * @param array $arguments
-     * @return static
-     * @noinspection PhpMissingParamTypeInspection
+     * @inheritDoc
      */
-    final public static function __callStatic($name, $arguments): self
+    final public function jsonSerialize(): array
     {
-        $instances = static::getInstances();
-        if (isset($instances[$name])) {
-            return $instances[$name];
-        }
-        throw new BadMethodCallException(
-            sprintf(
-                'Unknown constant name for enum %s detected: %s',
-                static::class,
-                $name
-            )
-        );
+        return [
+            'key' => $this->key,
+            'value' => $this->value
+        ];
     }
 }

@@ -39,12 +39,12 @@ trait EnumSerializableTrait
     /**
      * @inheritDoc
      */
-    public function serialize(): string
+    final public function serialize(): string
     {
         return serialize(
             [
-                $this->key,
-                $this->value
+                'key' => $this->key,
+                'value' => $this->value
             ]
         );
     }
@@ -53,11 +53,11 @@ trait EnumSerializableTrait
      * @inheritDoc
      * @noinspection UnserializeExploitsInspection
      */
-    public function unserialize($serialized): void
+    final public function unserialize($serialized): void
     {
         [
-            $this->key,
-            $this->value
+            'key' => $this->key,
+            'value' => $this->value
         ] = (array)unserialize($serialized);
     }
 }
