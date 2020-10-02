@@ -34,6 +34,7 @@ use CoffeePhp\Enum\Util\EnumGetInstanceByConstantValueTrait;
 use CoffeePhp\Enum\Util\EnumGetInstancesTrait;
 use CoffeePhp\Enum\Util\EnumHasConstantNameTrait;
 use CoffeePhp\Enum\Util\EnumHasConstantValueTrait;
+use CoffeePhp\Enum\Util\EnumJsonSerializableTrait;
 use CoffeePhp\Enum\Util\EnumMagicTrait;
 use CoffeePhp\Enum\Util\EnumSerializableTrait;
 
@@ -54,6 +55,7 @@ abstract class AbstractStringEnum implements EnumInterface
     use EnumHasConstantValueTrait;
     use EnumMagicTrait;
     use EnumSerializableTrait;
+    use EnumJsonSerializableTrait;
 
     private string $key;
     private string $value;
@@ -90,15 +92,6 @@ abstract class AbstractStringEnum implements EnumInterface
      * @inheritDoc
      */
     final public function __toString(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * @inheritDoc
-     * @return string
-     */
-    final public function jsonSerialize(): string
     {
         return $this->value;
     }

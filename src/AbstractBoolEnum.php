@@ -34,6 +34,7 @@ use CoffeePhp\Enum\Util\EnumGetInstanceByConstantValueTrait;
 use CoffeePhp\Enum\Util\EnumGetInstancesTrait;
 use CoffeePhp\Enum\Util\EnumHasConstantNameTrait;
 use CoffeePhp\Enum\Util\EnumHasConstantValueTrait;
+use CoffeePhp\Enum\Util\EnumJsonSerializableTrait;
 use CoffeePhp\Enum\Util\EnumMagicTrait;
 use CoffeePhp\Enum\Util\EnumSerializableTrait;
 
@@ -54,6 +55,7 @@ abstract class AbstractBoolEnum implements EnumInterface
     use EnumHasConstantValueTrait;
     use EnumMagicTrait;
     use EnumSerializableTrait;
+    use EnumJsonSerializableTrait;
 
     private string $key;
     private bool $value;
@@ -93,14 +95,5 @@ abstract class AbstractBoolEnum implements EnumInterface
     final public function __toString(): string
     {
         return $this->value ? '1' : '0';
-    }
-
-    /**
-     * @inheritDoc
-     * @return bool
-     */
-    final public function jsonSerialize(): bool
-    {
-        return $this->value;
     }
 }

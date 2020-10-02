@@ -51,9 +51,7 @@ trait EnumGetInstancesTrait
              * @var mixed $value
              */
             foreach (static::getConstants() as $key => $value) {
-                /**
-                 * @psalm-suppress MixedArgument
-                 */
+                /** @psalm-suppress MixedArgument */
                 $instances[$key] = new static($key, $value);
             }
             self::$instances[static::class] = $instances;
