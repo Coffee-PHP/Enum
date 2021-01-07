@@ -58,7 +58,7 @@ final class EnumTest extends AbstractEnumTest
             MockNullableFloatEnum::class,
             MockStringEnum::class,
             MockNullableStringEnum::class,
-            MockMixedEnum::class
+            MockMixedEnum::class,
         ];
     }
 }

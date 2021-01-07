@@ -57,18 +57,13 @@ abstract class AbstractNullableIntEnum implements EnumInterface
     use EnumSerializableTrait;
     use EnumJsonSerializableTrait;
 
-    private string $key;
-    private ?int $value;
-
     /**
      * AbstractNullableIntEnum constructor.
      * @param string $key
      * @param int|null $value
      */
-    final protected function __construct(string $key, ?int $value)
+    final protected function __construct(private string $key, private ?int $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     /**

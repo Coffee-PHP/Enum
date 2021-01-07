@@ -27,6 +27,7 @@ namespace CoffeePhp\Enum\Contract;
 
 use JsonSerializable;
 use Serializable;
+use Stringable;
 
 /**
  * Interface EnumInterface
@@ -34,14 +35,14 @@ use Serializable;
  * @since 2020-07-27
  * @author Danny Damsky <dannydamsky99@gmail.com>
  */
-interface EnumInterface extends JsonSerializable, Serializable
+interface EnumInterface extends JsonSerializable, Serializable, Stringable
 {
     /**
      * Get a map of constants that are available
      * for the current enum.
      *
-     * @return array A map of constant names
-     * as keys and constant values as values.
+     * @return array<string, mixed>
+     * A map of constant names as keys and constant values as values.
      */
     public static function getConstants(): array;
 
@@ -60,7 +61,7 @@ interface EnumInterface extends JsonSerializable, Serializable
      * @param mixed $constantValue
      * @return bool
      */
-    public static function hasConstantValue($constantValue): bool;
+    public static function hasConstantValue(mixed $constantValue): bool;
 
     /**
      * Get the constant value by the provided name.
@@ -68,7 +69,7 @@ interface EnumInterface extends JsonSerializable, Serializable
      * @param string $constantName
      * @return mixed
      */
-    public static function getConstantValueByName(string $constantName);
+    public static function getConstantValueByName(string $constantName): mixed;
 
     /**
      * Get the constant name by the provided value.
@@ -76,13 +77,13 @@ interface EnumInterface extends JsonSerializable, Serializable
      * @param mixed $constantValue
      * @return string
      */
-    public static function getConstantNameByValue($constantValue): string;
+    public static function getConstantNameByValue(mixed $constantValue): string;
 
     /**
      * Get a map of constant names as keys
      * and enum instances as values.
      *
-     * @return static[]
+     * @return array<string, static>
      */
     public static function getInstances(): array;
 
@@ -93,7 +94,7 @@ interface EnumInterface extends JsonSerializable, Serializable
      * @param string $constantName
      * @return static
      */
-    public static function getInstanceByConstantName(string $constantName): self;
+    public static function getInstanceByConstantName(string $constantName): static;
 
     /**
      * Get an instance of this enum
@@ -102,7 +103,7 @@ interface EnumInterface extends JsonSerializable, Serializable
      * @param mixed $constantValue
      * @return static
      */
-    public static function getInstanceByConstantValue($constantValue): self;
+    public static function getInstanceByConstantValue(mixed $constantValue): static;
 
     /**
      * Get the enum key.
@@ -116,7 +117,7 @@ interface EnumInterface extends JsonSerializable, Serializable
      *
      * @return mixed
      */
-    public function getValue();
+    public function getValue(): mixed;
 
     /**
      * Get the enum value as a string.

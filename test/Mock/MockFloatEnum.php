@@ -38,7 +38,7 @@ final class MockFloatEnum extends AbstractFloatEnum
 {
     /**
      * @inheritDoc
-     * @return float[]
+     * @return array<string, float>
      */
     public static function getConstants(): array
     {

@@ -57,22 +57,13 @@ abstract class AbstractMixedEnum implements EnumInterface
     use EnumSerializableTrait;
     use EnumJsonSerializableTrait;
 
-    private string $key;
-
-    /**
-     * @var mixed
-     */
-    private $value;
-
     /**
      * AbstractMixedEnum constructor.
      * @param string $key
      * @param mixed $value
      */
-    final protected function __construct(string $key, $value)
+    final protected function __construct(private string $key, private mixed $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     /**
@@ -85,9 +76,8 @@ abstract class AbstractMixedEnum implements EnumInterface
 
     /**
      * @inheritDoc
-     * @return mixed
      */
-    final public function getValue()
+    final public function getValue(): mixed
     {
         return $this->value;
     }

@@ -39,7 +39,7 @@ trait EnumHasConstantValueTrait
     /**
      * @inheritDoc
      */
-    final public static function hasConstantValue($constantValue): bool
+    final public static function hasConstantValue(mixed $constantValue): bool
     {
         return in_array($constantValue, static::getConstants(), true);
     }

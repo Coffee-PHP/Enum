@@ -25,10 +25,11 @@ declare (strict_types=1);
 
 namespace CoffeePhp\Enum\Test\Unit;
 
-
 use CoffeePhp\Enum\Contract\EnumInterface;
-use PHPUnit\Framework\TestCase;
+use CoffeePhp\QualityTools\TestCase;
 
+use function array_pop;
+use function explode;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 use function PHPUnit\Framework\assertSameSize;
@@ -45,22 +46,31 @@ use function unserialize;
 abstract class AbstractEnumTest extends TestCase
 {
     /**
-     * @return EnumInterface[]|string[]
+     * @return array<int, class-string<EnumInterface>>
      */
     abstract protected function getClassesToTest(): array;
 
-    final public function testEnums(): void
+    /**
+     * @return array<string, array<int, class-string<EnumInterface>>>
+     */
+    final public function classesProvider(): array
     {
-        $classesToTest = $this->getClassesToTest();
-        foreach ($classesToTest as $class) {
-            $this->executeTestsOn($class);
+        $classes = $this->getClassesToTest();
+        $data = [];
+        foreach ($classes as $class) {
+            $classSplitByNamespace = explode('\\', $class);
+            $className = array_pop($classSplitByNamespace);
+            $data[$className] = [$class];
         }
+        return $data;
     }
 
     /**
+     * @dataProvider classesProvider
      * @param EnumInterface|string $class
+     * @noinspection PhpDocSignatureInspection
      */
-    private function executeTestsOn(string $class): void
+    final public function testEnum(string $class): void
     {
         assertSameSize($class::getConstants(), $class::getInstances());
         assertEquals(array_keys($class::getConstants()), array_keys($class::getInstances()));

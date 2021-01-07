@@ -19,7 +19,6 @@
  * @package coffeephp\enum
  * @author Danny Damsky <dannydamsky99@gmail.com>
  * @since 2020-07-28
- * @noinspection PhpSuperClassIncompatibleWithInterfaceInspection
  */
 
 declare(strict_types=1);
@@ -57,18 +56,13 @@ abstract class AbstractBoolEnum implements EnumInterface
     use EnumSerializableTrait;
     use EnumJsonSerializableTrait;
 
-    private string $key;
-    private bool $value;
-
     /**
      * AbstractBoolEnum constructor.
      * @param string $key
      * @param bool $value
      */
-    final protected function __construct(string $key, bool $value)
+    final protected function __construct(private string $key, private bool $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     /**
@@ -82,7 +76,6 @@ abstract class AbstractBoolEnum implements EnumInterface
     /**
      * @inheritDoc
      * @return bool
-     * @SuppressWarnings(PHPMD.BooleanGetMethodName)
      */
     final public function getValue(): bool
     {

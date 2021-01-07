@@ -36,7 +36,7 @@ trait EnumGetConstantValueByNameTrait
     /**
      * @inheritDoc
      */
-    public static function getConstantValueByName(string $constantName)
+    public static function getConstantValueByName(string $constantName): mixed
     {
         return static::getConstants()[$constantName];
     }

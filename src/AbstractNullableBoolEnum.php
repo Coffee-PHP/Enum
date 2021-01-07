@@ -57,18 +57,13 @@ abstract class AbstractNullableBoolEnum implements EnumInterface
     use EnumSerializableTrait;
     use EnumJsonSerializableTrait;
 
-    private string $key;
-    private ?bool $value;
-
     /**
      * AbstractNullableBoolEnum constructor.
      * @param string $key
      * @param bool|null $value
      */
-    final protected function __construct(string $key, ?bool $value)
+    final protected function __construct(private string $key, private ?bool $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     /**

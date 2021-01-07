@@ -41,7 +41,7 @@ final class MockStringEnum extends AbstractStringEnum
 {
     /**
      * @inheritDoc
-     * @return string[]
+     * @return array<string, string>
      */
     public static function getConstants(): array
     {

@@ -34,13 +34,13 @@ namespace CoffeePhp\Enum\Util;
 trait EnumGetInstancesTrait
 {
     /**
-     * @var static[][]
+     * @var array<string, array<string, static>>
      */
     private static array $instances = [];
 
     /**
      * @inheritDoc
-     * @return static[]
+     * @return array<string, static>
      */
     final public static function getInstances(): array
     {

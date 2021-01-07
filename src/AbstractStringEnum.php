@@ -57,18 +57,13 @@ abstract class AbstractStringEnum implements EnumInterface
     use EnumSerializableTrait;
     use EnumJsonSerializableTrait;
 
-    private string $key;
-    private string $value;
-
     /**
      * AbstractStringEnum constructor.
      * @param string $key
      * @param string $value
      */
-    final protected function __construct(string $key, string $value)
+    final protected function __construct(private string $key, private string $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     /**
