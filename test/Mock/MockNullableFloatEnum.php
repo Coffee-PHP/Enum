@@ -41,7 +41,7 @@ final class MockNullableFloatEnum extends AbstractNullableFloatEnum
 {
     /**
      * @inheritDoc
-     * @return float[]|null[]
+     * @return array<string, float|null>
      */
     public static function getConstants(): array
     {

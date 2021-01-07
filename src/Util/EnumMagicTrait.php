@@ -37,14 +37,12 @@ use function sprintf;
  */
 trait EnumMagicTrait
 {
-
     /**
      * @param string $name
      * @param array $arguments
      * @return static
-     * @noinspection PhpMissingParamTypeInspection
      */
-    final public static function __callStatic($name, $arguments): self
+    final public static function __callStatic(string $name, array $arguments): static
     {
         $instances = static::getInstances();
         if (isset($instances[$name])) {

@@ -37,7 +37,7 @@ trait EnumGetInstanceByConstantNameTrait
      * @inheritDoc
      * @return static
      */
-    public static function getInstanceByConstantName(string $constantName): self
+    public static function getInstanceByConstantName(string $constantName): static
     {
         return static::getInstances()[$constantName];
     }

@@ -51,7 +51,9 @@ trait EnumSerializableTrait
 
     /**
      * @inheritDoc
+     * @param string $serialized
      * @noinspection UnserializeExploitsInspection
+     * @noinspection PhpMissingParamTypeInspection
      */
     final public function unserialize($serialized): void
     {

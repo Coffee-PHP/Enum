@@ -57,18 +57,13 @@ abstract class AbstractFloatEnum implements EnumInterface
     use EnumSerializableTrait;
     use EnumJsonSerializableTrait;
 
-    private string $key;
-    private float $value;
-
     /**
      * AbstractFloatEnum constructor.
      * @param string $key
      * @param float $value
      */
-    final protected function __construct(string $key, float $value)
+    final protected function __construct(private string $key, private float $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     /**

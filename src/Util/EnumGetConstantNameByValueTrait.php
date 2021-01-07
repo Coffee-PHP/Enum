@@ -38,7 +38,7 @@ trait EnumGetConstantNameByValueTrait
     /**
      * @inheritDoc
      */
-    public static function getConstantNameByValue($constantValue): string
+    public static function getConstantNameByValue(mixed $constantValue): string
     {
         /**
          * @var string $key
@@ -49,6 +49,6 @@ trait EnumGetConstantNameByValueTrait
                 return $key;
             }
         }
-        throw new InvalidArgumentException("Unknown enum value provided.");
+        throw new InvalidArgumentException('Unknown enum value provided.');
     }
 }

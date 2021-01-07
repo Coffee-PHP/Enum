@@ -41,7 +41,7 @@ final class MockBoolEnum extends AbstractBoolEnum
 {
     /**
      * @inheritDoc
-     * @return bool[]
+     * @return array<string, bool>
      */
     public static function getConstants(): array
     {

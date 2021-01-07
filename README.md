@@ -1,5 +1,7 @@
 # Coffee PHP - Enum
 
+![Build](https://github.com/Coffee-PHP/Enum/workflows/Build/badge.svg)
+
 Adds support for the usage of enums
 in PHP.
 

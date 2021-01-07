@@ -41,7 +41,7 @@ final class MockNullableStringEnum extends AbstractNullableStringEnum
 {
     /**
      * @inheritDoc
-     * @return string[]|null[]
+     * @return array<string, string|null>
      */
     public static function getConstants(): array
     {

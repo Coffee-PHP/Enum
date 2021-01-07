@@ -41,7 +41,7 @@ final class MockNullableBoolEnum extends AbstractNullableBoolEnum
 {
     /**
      * @inheritDoc
-     * @return bool[]|null[]
+     * @return array<string, bool|null>
      */
     public static function getConstants(): array
     {
