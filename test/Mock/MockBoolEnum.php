@@ -35,19 +35,15 @@ use CoffeePhp\Enum\AbstractBoolEnum;
  * @author Danny Damsky <dannydamsky99@gmail.com>
  * @method static static ONE()
  * @method static static TWO()
- * @method static static THREE()
  */
 final class MockBoolEnum extends AbstractBoolEnum
 {
     /**
      * @inheritDoc
-     * @return array<string, bool>
      */
-    public static function getConstants(): array
+    public static function getConstants(): iterable
     {
-        return [
-            'ONE' => false,
-            'TWO' => true
-        ];
+        yield 'ONE' => false;
+        yield 'TWO' => true;
     }
 }

@@ -41,9 +41,8 @@ final class MockNullableBoolEnum extends AbstractNullableBoolEnum
 {
     /**
      * @inheritDoc
-     * @return array<string, bool|null>
      */
-    public static function getConstants(): array
+    public static function getConstants(): iterable
     {
         return [
             'ONE' => false,

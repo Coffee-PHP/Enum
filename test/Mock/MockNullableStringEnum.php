@@ -41,9 +41,8 @@ final class MockNullableStringEnum extends AbstractNullableStringEnum
 {
     /**
      * @inheritDoc
-     * @return array<string, string|null>
      */
-    public static function getConstants(): array
+    public static function getConstants(): iterable
     {
         return [
             'ONE' => 'one',
