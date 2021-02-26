@@ -33,19 +33,19 @@ use CoffeePhp\Enum\AbstractFloatEnum;
  * @package coffeephp\enum
  * @since 2020-08-03
  * @author Danny Damsky <dannydamsky99@gmail.com>
+ * @method static static ONE()
+ * @method static static TWO()
+ * @method static static THREE()
  */
 final class MockFloatEnum extends AbstractFloatEnum
 {
     /**
      * @inheritDoc
-     * @return array<string, float>
      */
-    public static function getConstants(): array
+    public static function getConstants(): iterable
     {
-        return [
-            'ONE' => 1.1,
-            'TWO' => 2.2,
-            'THREE' => 3.3
-        ];
+        yield 'ONE' => 1.1;
+        yield 'TWO' => 2.2;
+        yield 'THREE' => 3.3;
     }
 }

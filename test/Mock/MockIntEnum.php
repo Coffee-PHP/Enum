@@ -41,7 +41,6 @@ final class MockIntEnum extends AbstractIntEnum
 {
     /**
      * @inheritDoc
-     * @return array<string, int>
      */
     public static function getConstants(): array
     {

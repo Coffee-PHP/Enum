@@ -43,9 +43,8 @@ final class MockMixedEnum extends AbstractMixedEnum
 {
     /**
      * @inheritDoc
-     * @return array<string, mixed>
      */
-    public static function getConstants(): array
+    public static function getConstants(): iterable
     {
         return [
             'ONE' => 1.1,

@@ -19,78 +19,92 @@
  * @package coffeephp\enum
  * @author Danny Damsky <dannydamsky99@gmail.com>
  * @since 2020-07-28
- * @noinspection PhpSuperClassIncompatibleWithInterfaceInspection
  */
 
 declare(strict_types=1);
 
 namespace CoffeePhp\Enum;
 
-use CoffeePhp\Enum\Contract\EnumInterface;
-use CoffeePhp\Enum\Util\EnumGetConstantNameByValueTrait;
-use CoffeePhp\Enum\Util\EnumGetConstantValueByNameTrait;
-use CoffeePhp\Enum\Util\EnumGetInstanceByConstantNameTrait;
-use CoffeePhp\Enum\Util\EnumGetInstanceByConstantValueTrait;
-use CoffeePhp\Enum\Util\EnumGetInstancesTrait;
-use CoffeePhp\Enum\Util\EnumHasConstantNameTrait;
-use CoffeePhp\Enum\Util\EnumHasConstantValueTrait;
-use CoffeePhp\Enum\Util\EnumJsonSerializableTrait;
-use CoffeePhp\Enum\Util\EnumMagicTrait;
-use CoffeePhp\Enum\Util\EnumSerializableTrait;
+use Error;
 
 /**
  * Class AbstractNullableBoolEnum
  * @package coffeephp\enum
  * @since 2020-07-28
  * @author Danny Damsky <dannydamsky99@gmail.com>
+ * @property-read string $name
+ * @property-read bool|null $value
+ * @psalm-immutable
  */
-abstract class AbstractNullableBoolEnum implements EnumInterface
+abstract class AbstractNullableBoolEnum
 {
-    use EnumGetConstantNameByValueTrait;
-    use EnumGetConstantValueByNameTrait;
-    use EnumGetInstanceByConstantNameTrait;
-    use EnumGetInstanceByConstantValueTrait;
-    use EnumGetInstancesTrait;
-    use EnumHasConstantNameTrait;
-    use EnumHasConstantValueTrait;
-    use EnumMagicTrait;
-    use EnumSerializableTrait;
-    use EnumJsonSerializableTrait;
+    /**
+     * @var array<string, array<string, static>>
+     */
+    private static array $instances = [];
+
+    /**
+     * Magic method, returns the enum instance on a static method call.
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return static
+     */
+    final public static function __callStatic(string $name, array $arguments): static
+    {
+        $instances = static::getInstances();
+        if (isset($instances[$name])) {
+            return $instances[$name];
+        }
+        throw new Error('Call to undefined method ' . static::class . '::' . $name . '()');
+    }
+
+    /**
+     * Get a map of constant names as keys
+     * and enum instances as values.
+     *
+     * @return array<string, static>
+     */
+    final protected static function getInstances(): array
+    {
+        if (!isset(self::$instances[static::class])) {
+            $instances = [];
+            foreach (static::getConstants() as $key => $value) {
+                $instances[$key] = new static($key, $value);
+            }
+            self::$instances[static::class] = $instances;
+        }
+        return self::$instances[static::class];
+    }
+
+    /**
+     * Get a map of constants that are available
+     * for the current enum.
+     *
+     * @return iterable<string, bool|null>
+     *     A map of constant names as keys and constant values as values.
+     * @noinspection PhpDocSignatureInspection
+     */
+    abstract protected static function getConstants(): iterable;
 
     /**
      * AbstractNullableBoolEnum constructor.
-     * @param string $key
+     * @param string $name
      * @param bool|null $value
      */
-    final protected function __construct(private string $key, private ?bool $value)
+    final protected function __construct(public string $name, public ?bool $value)
     {
     }
 
     /**
-     * @inheritDoc
-     */
-    final public function getKey(): string
-    {
-        return $this->key;
-    }
-
-    /**
-     * @inheritDoc
-     * @return bool|null
-     */
-    final public function getValue(): ?bool
-    {
-        return $this->value;
-    }
-
-    /**
-     * @inheritDoc
+     * Magic method {@see https://www.php.net/manual/en/language.oop5.magic.php}
+     * called during serialization to string.
+     *
+     * @return string Returns string representation of the object that
+     * implements this interface (and/or "__toString" magic method).
      */
     final public function __toString(): string
     {
-        if ($this->value === null) {
-            return '';
-        }
-        return $this->value ? '1' : '0';
+        return (string)$this->value;
     }
 }
