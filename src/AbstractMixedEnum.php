@@ -29,6 +29,9 @@ use Error;
 
 /**
  * Class AbstractMixedEnum
+ *
+ * Represents a mixed-type enumerable object.
+ *
  * @package coffeephp\enum
  * @since 2020-07-28
  * @author Danny Damsky <dannydamsky99@gmail.com>
@@ -64,12 +67,12 @@ abstract class AbstractMixedEnum
      * and enum instances as values.
      *
      * @return array<string, static>
+     * @psalm-suppress MixedAssignment
      */
     final protected static function getInstances(): array
     {
         if (!isset(self::$instances[static::class])) {
             $instances = [];
-            /** @psalm-suppress MixedAssignment */
             foreach (static::getConstants() as $key => $value) {
                 $instances[$key] = new static($key, $value);
             }
@@ -89,12 +92,46 @@ abstract class AbstractMixedEnum
     abstract protected static function getConstants(): iterable;
 
     /**
-     * AbstractMixedEnum constructor.
+     * Mixed enumerable constructor.
+     *
      * @param string $name
      * @param mixed $value
      */
-    final protected function __construct(public string $name, public mixed $value)
+    final private function __construct(private string $name, private mixed $value)
     {
+    }
+
+    /**
+     * Give read-only access to $name and $value.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    final public function __get(string $name): mixed
+    {
+        return $this->{$name};
+    }
+
+    /**
+     * Restrict write access to $name and $value.
+     *
+     * @param string $name
+     * @param mixed $value
+     */
+    final public function __set(string $name, mixed $value): void
+    {
+        throw new Error('The class ' . static::class . ' is immutable and cannot be modified');
+    }
+
+    /**
+     * Basic implementation of __isset() for checking if a class property exists.
+     *
+     * @param string $name
+     * @return bool
+     */
+    final public function __isset(string $name): bool
+    {
+        return isset($this->{$name});
     }
 
     /**

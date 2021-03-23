@@ -36,6 +36,7 @@ use CoffeePhp\Enum\Test\Mock\MockNullableIntEnum;
 use CoffeePhp\Enum\Test\Mock\MockNullableStringEnum;
 use CoffeePhp\Enum\Test\Mock\MockStringEnum;
 use CoffeePhp\QualityTools\TestCase;
+use Error;
 
 use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertNull;
@@ -56,6 +57,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockBoolEnum::ONE()->name);
         assertFalse(MockBoolEnum::ONE()->value);
         assertSame('', (string)MockBoolEnum::ONE());
+        assertTrue(isset(MockBoolEnum::ONE()->name));
+        assertTrue(isset(MockBoolEnum::ONE()->value));
+        assertFalse(isset(MockBoolEnum::ONE()->a));
+        self::assertException(
+            fn() => MockBoolEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockBoolEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockBoolEnum::ONE()->value = true,
+            Error::class,
+            'The class ' . MockBoolEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockBoolEnum::TWO(), MockBoolEnum::TWO());
         assertSame('TWO', MockBoolEnum::TWO()->name);
@@ -66,6 +80,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockFloatEnum::ONE()->name);
         assertSame(1.1, MockFloatEnum::ONE()->value);
         assertSame('1.1', (string)MockFloatEnum::ONE());
+        assertTrue(isset(MockFloatEnum::ONE()->name));
+        assertTrue(isset(MockFloatEnum::ONE()->value));
+        assertFalse(isset(MockFloatEnum::ONE()->a));
+        self::assertException(
+            fn() => MockFloatEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockFloatEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockFloatEnum::ONE()->value = 4.4,
+            Error::class,
+            'The class ' . MockFloatEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockFloatEnum::TWO(), MockFloatEnum::TWO());
         assertSame('TWO', MockFloatEnum::TWO()->name);
@@ -81,6 +108,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockIntEnum::ONE()->name);
         assertSame(1, MockIntEnum::ONE()->value);
         assertSame('1', (string)MockIntEnum::ONE());
+        assertTrue(isset(MockIntEnum::ONE()->name));
+        assertTrue(isset(MockIntEnum::ONE()->value));
+        assertFalse(isset(MockIntEnum::ONE()->a));
+        self::assertException(
+            fn() => MockIntEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockIntEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockIntEnum::ONE()->value = 4,
+            Error::class,
+            'The class ' . MockIntEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockIntEnum::TWO(), MockIntEnum::TWO());
         assertSame('TWO', MockIntEnum::TWO()->name);
@@ -96,6 +136,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockMixedEnum::ONE()->name);
         assertSame(1.1, MockMixedEnum::ONE()->value);
         assertSame('1.1', (string)MockMixedEnum::ONE());
+        assertTrue(isset(MockMixedEnum::ONE()->name));
+        assertTrue(isset(MockMixedEnum::ONE()->value));
+        assertFalse(isset(MockMixedEnum::ONE()->a));
+        self::assertException(
+            fn() => MockMixedEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockMixedEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockMixedEnum::ONE()->value = 4,
+            Error::class,
+            'The class ' . MockMixedEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockMixedEnum::TWO(), MockMixedEnum::TWO());
         assertSame('TWO', MockMixedEnum::TWO()->name);
@@ -121,6 +174,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockNullableBoolEnum::ONE()->name);
         assertFalse(MockNullableBoolEnum::ONE()->value);
         assertSame('', (string)MockNullableBoolEnum::ONE());
+        assertTrue(isset(MockNullableBoolEnum::ONE()->name));
+        assertTrue(isset(MockNullableBoolEnum::ONE()->value));
+        assertFalse(isset(MockNullableBoolEnum::ONE()->a));
+        self::assertException(
+            fn() => MockNullableBoolEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockNullableBoolEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockNullableBoolEnum::ONE()->value = null,
+            Error::class,
+            'The class ' . MockNullableBoolEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockNullableBoolEnum::TWO(), MockNullableBoolEnum::TWO());
         assertSame('TWO', MockNullableBoolEnum::TWO()->name);
@@ -136,6 +202,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockNullableFloatEnum::ONE()->name);
         assertSame(1.1, MockNullableFloatEnum::ONE()->value);
         assertSame('1.1', (string)MockNullableFloatEnum::ONE());
+        assertTrue(isset(MockNullableFloatEnum::ONE()->name));
+        assertTrue(isset(MockNullableFloatEnum::ONE()->value));
+        assertFalse(isset(MockNullableFloatEnum::ONE()->a));
+        self::assertException(
+            fn() => MockNullableFloatEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockNullableFloatEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockNullableFloatEnum::ONE()->value = null,
+            Error::class,
+            'The class ' . MockNullableFloatEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockNullableFloatEnum::TWO(), MockNullableFloatEnum::TWO());
         assertSame('TWO', MockNullableFloatEnum::TWO()->name);
@@ -151,6 +230,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockNullableIntEnum::ONE()->name);
         assertSame(1, MockNullableIntEnum::ONE()->value);
         assertSame('1', (string)MockNullableIntEnum::ONE());
+        assertTrue(isset(MockNullableIntEnum::ONE()->name));
+        assertTrue(isset(MockNullableIntEnum::ONE()->value));
+        assertFalse(isset(MockNullableIntEnum::ONE()->a));
+        self::assertException(
+            fn() => MockNullableIntEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockNullableIntEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockNullableIntEnum::ONE()->value = null,
+            Error::class,
+            'The class ' . MockNullableIntEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockNullableIntEnum::TWO(), MockNullableIntEnum::TWO());
         assertSame('TWO', MockNullableIntEnum::TWO()->name);
@@ -166,6 +258,19 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockNullableStringEnum::ONE()->name);
         assertSame('one', MockNullableStringEnum::ONE()->value);
         assertSame('one', (string)MockNullableStringEnum::ONE());
+        assertTrue(isset(MockNullableStringEnum::ONE()->name));
+        assertTrue(isset(MockNullableStringEnum::ONE()->value));
+        assertFalse(isset(MockNullableStringEnum::ONE()->a));
+        self::assertException(
+            fn() => MockNullableStringEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockNullableStringEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockNullableStringEnum::ONE()->value = null,
+            Error::class,
+            'The class ' . MockNullableStringEnum::class . ' is immutable and cannot be modified'
+        );
 
         assertSame(MockNullableStringEnum::TWO(), MockNullableStringEnum::TWO());
         assertSame('TWO', MockNullableStringEnum::TWO()->name);
@@ -181,6 +286,20 @@ final class EnumTest extends TestCase
         assertSame('ONE', MockStringEnum::ONE()->name);
         assertSame('one', MockStringEnum::ONE()->value);
         assertSame('one', (string)MockStringEnum::ONE());
+        assertTrue(isset(MockStringEnum::ONE()->name));
+        assertTrue(isset(MockStringEnum::ONE()->value));
+        assertFalse(isset(MockStringEnum::ONE()->a));
+        self::assertException(
+            fn() => MockStringEnum::ONE()->name = 'X',
+            Error::class,
+            'The class ' . MockStringEnum::class . ' is immutable and cannot be modified'
+        );
+        self::assertException(
+            fn() => MockStringEnum::ONE()->value = 'four',
+            Error::class,
+            'The class ' . MockStringEnum::class . ' is immutable and cannot be modified'
+        );
+
 
         assertSame(MockStringEnum::TWO(), MockStringEnum::TWO());
         assertSame('TWO', MockStringEnum::TWO()->name);

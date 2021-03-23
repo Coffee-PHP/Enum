@@ -29,6 +29,9 @@ use Error;
 
 /**
  * Class AbstractNullableFloatEnum
+ *
+ * Represents a nullable floating-point enumerable object.
+ *
  * @package coffeephp\enum
  * @since 2020-07-28
  * @author Danny Damsky <dannydamsky99@gmail.com>
@@ -87,12 +90,46 @@ abstract class AbstractNullableFloatEnum
     abstract protected static function getConstants(): iterable;
 
     /**
-     * AbstractNullableFloatEnum constructor.
+     * Nullable floating-point enumerable constructor.
+     *
      * @param string $name
      * @param float|null $value
      */
-    final protected function __construct(public string $name, public ?float $value)
+    final private function __construct(private string $name, private ?float $value)
     {
+    }
+
+    /**
+     * Give read-only access to $name and $value.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    final public function __get(string $name): mixed
+    {
+        return $this->{$name};
+    }
+
+    /**
+     * Restrict write access to $name and $value.
+     *
+     * @param string $name
+     * @param mixed $value
+     */
+    final public function __set(string $name, mixed $value): void
+    {
+        throw new Error('The class ' . static::class . ' is immutable and cannot be modified');
+    }
+
+    /**
+     * Basic implementation of __isset() for checking if a class property exists.
+     *
+     * @param string $name
+     * @return bool
+     */
+    final public function __isset(string $name): bool
+    {
+        return isset($this->{$name});
     }
 
     /**

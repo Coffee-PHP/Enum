@@ -29,6 +29,9 @@ use Error;
 
 /**
  * Class AbstractBoolEnum
+ *
+ * Represents a boolean enumerable object.
+ *
  * @package coffeephp\enum
  * @since 2020-07-28
  * @author Danny Damsky <dannydamsky99@gmail.com>
@@ -87,12 +90,46 @@ abstract class AbstractBoolEnum
     abstract protected static function getConstants(): iterable;
 
     /**
-     * AbstractBoolEnum constructor.
+     * Boolean Enumerable constructor.
+     *
      * @param string $name
      * @param bool $value
      */
-    final protected function __construct(public string $name, public bool $value)
+    final private function __construct(private string $name, private bool $value)
     {
+    }
+
+    /**
+     * Give read-only access to $name and $value.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    final public function __get(string $name): mixed
+    {
+        return $this->{$name};
+    }
+
+    /**
+     * Restrict write access to $name and $value.
+     *
+     * @param string $name
+     * @param mixed $value
+     */
+    final public function __set(string $name, mixed $value): void
+    {
+        throw new Error('The class ' . static::class . ' is immutable and cannot be modified');
+    }
+
+    /**
+     * Basic implementation of __isset() for checking if a class property exists.
+     *
+     * @param string $name
+     * @return bool
+     */
+    final public function __isset(string $name): bool
+    {
+        return isset($this->{$name});
     }
 
     /**

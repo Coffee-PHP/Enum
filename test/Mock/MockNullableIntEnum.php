@@ -36,6 +36,9 @@ use CoffeePhp\Enum\AbstractNullableIntEnum;
  * @method static static ONE()
  * @method static static TWO()
  * @method static static THREE()
+ * @note Do not add the properties manually in extending enums, this is only for tests.
+ * @property string $name
+ * @property int|null $value
  */
 final class MockNullableIntEnum extends AbstractNullableIntEnum
 {

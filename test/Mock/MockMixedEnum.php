@@ -38,6 +38,9 @@ use CoffeePhp\Enum\AbstractMixedEnum;
  * @method static static THREE()
  * @method static static FOUR()
  * @method static static FIVE()
+ * @note Do not add the properties manually in extending enums, this is only for tests.
+ * @property string $name
+ * @property mixed $value
  */
 final class MockMixedEnum extends AbstractMixedEnum
 {

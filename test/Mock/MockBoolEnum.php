@@ -35,6 +35,9 @@ use CoffeePhp\Enum\AbstractBoolEnum;
  * @author Danny Damsky <dannydamsky99@gmail.com>
  * @method static static ONE()
  * @method static static TWO()
+ * @note Do not add the properties manually in extending enums, this is only for tests.
+ * @property string $name
+ * @property bool $value
  */
 final class MockBoolEnum extends AbstractBoolEnum
 {
