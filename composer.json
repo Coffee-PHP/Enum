@@ -2,7 +2,7 @@
     "name": "coffeephp/enum",
     "description": "Adds support for the usage of enums in PHP.",
     "license": "Apache-2.0",
-    "version": "1.4.0",
+    "version": "1.5.1",
     "type": "library",
     "readme": "README.md",
     "time": "2021-02-26",
