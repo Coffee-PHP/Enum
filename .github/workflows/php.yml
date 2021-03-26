@@ -35,6 +35,3 @@ jobs:
 
     - name: Run Psalm analysis
       run: composer run-script coffeephp:exec:psalm
-
-    - name: Run PHPStan analysis
-      run: composer run-script coffeephp:exec:phpstan-analyse

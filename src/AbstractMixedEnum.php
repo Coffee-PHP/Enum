@@ -37,7 +37,6 @@ use Error;
  * @author Danny Damsky <dannydamsky99@gmail.com>
  * @property-read string $name
  * @property-read mixed $value
- * @psalm-immutable
  */
 abstract class AbstractMixedEnum
 {
